@@ -1,0 +1,20 @@
+{
+    "name": "mantas/app3",
+    "description": "Super projektas",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mantas S",
+            "email": "sprainaitis.mantas@gmail.com"
+        }
+    ],
+    "require": {
+        "doctrine/orm": "^2.7"
+    },
+    "autoload": {
+        "psr-4": { 
+			"Models\\": "src/models/"
+		}
+    }
+}
