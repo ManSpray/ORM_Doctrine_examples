@@ -2,10 +2,27 @@
 
 include_once "bootstrap.php";
 
+// Add new product
+if(isset($_GET['product_name'])){
+    $product = new Models\Product();
+    $product->setName($_GET['product_name']);
+    $entityManager->persist($product);
+    $entityManager->flush();
+    // redirect_to_root();
+}
+
 // Delete product
 if(isset($_GET['delete'])){
-    $user = $entityManager->find('Models\Product', $_GET['delete']);
-    $entityManager->remove($user);
+    $product = $entityManager->find('Models\Product', $_GET['delete']);
+    $entityManager->remove($product);
+    $entityManager->flush();
+    // redirect_to_root();
+}
+
+// Update
+if(isset($_POST['update_name'])){
+    $product = $entityManager->find('Models\Product', $_POST['update_id']);
+    $product->setName($_POST['update_name']);
     $entityManager->flush();
     // redirect_to_root();
 }
@@ -63,3 +80,29 @@ foreach($products as $p)
         . "</tr>");
 print("</table>"); 
 print("</pre><hr>");
+
+if(isset($_GET['updatable'])){
+    $product = $entityManager->find('Models\Product', $_GET['updatable']);
+    print("<pre>Update Product: </pre>");
+    print("
+        <form action=\"\" method=\"POST\">
+            <input type=\"hidden\" name=\"update_id\" value=\"{$product->getId()}\">
+            <label for=\"name\">Product name: </label><br>
+            <input type=\"text\" name=\"update_name\" value=\"{$product->getName()}\"><br>
+            <input type=\"submit\" value=\"Submit\">
+        </form>
+    ");
+    print("<hr>");
+}
+
+print("<pre>Add new product: " . "</pre>");
+?>
+<form action="" method="GET">
+  <label for="product_name">Product name: </label><br>
+  <input type="text" name="product_name" value="Slepetes"><br>
+  <input type="submit" value="Submit">
+</form> 
+<hr>
+
+<pre style="display: inline">Once you understood these, you can start working with relations - click</pre>
+<a href="Relations"><pre style="display: inline">here</pre></a><pre style="display: inline"> when you are ready 🔥🔥🔥</pre>

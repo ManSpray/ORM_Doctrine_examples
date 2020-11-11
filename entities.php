@@ -9,7 +9,7 @@ function redirect_to_root(){
 
 // Add new product
 if(isset($_GET['name'])){
-    $product = new Product();
+    $product = new Models\Product();
     $product->setName($_GET['name']);
     $entityManager->persist($product);
     $entityManager->flush();

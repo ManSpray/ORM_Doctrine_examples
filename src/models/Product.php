@@ -1,10 +1,7 @@
 <?php
-
 namespace Models;
-
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-
 /**
  * @ORM\Entity
  * @ORM\Table(name="products")
@@ -18,9 +15,9 @@ class Product
      */
     protected $id;
     /** 
-     * @ORM\Column(type="string") 
+     * @ORM\Column(type="string", options={"default": "ABCD"}) 
      */
-    protected $name;
+    protected $name = "ABC";
 
     /**
      * One Product has One Shipment.
