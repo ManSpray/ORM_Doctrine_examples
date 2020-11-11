@@ -20,11 +20,26 @@ class User
 
     /**
      * @ORM\ManyToOne(targetEntity="Address")
-     * @ORM\JoinColumn(name="address_id", referencedColumnName="id")
+     * @ORM\JoinColumn(
+     * name="address_id",
+     * referencedColumnName="id",
+     * onDelete="CASCADE")
      */
     private $address;
 
-    public function __construct() {}
+    /**
+     * Many Users have Many Groups.
+     * @ORM\ManyToMany(targetEntity="Group")
+     * @ORM\JoinTable(name="users_groups",
+     *          joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
+     *          inverseJoinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")}
+     *      )
+     */
+    private $groups;
+
+    public function __construct() {
+        $this->groups = ArrayCollection();
+    }
 
     public function getAddress() 
     {

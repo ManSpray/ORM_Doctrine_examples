@@ -22,6 +22,7 @@ function redirect_to_root(){
 // 1:1 bidirectional
 
 // print("<pre>");
+
 // $customer = $entityManager->find('Models\Customer', 1);
 // Debug::dump($customer);
 // Debug::dump($customer->getCart());
@@ -32,3 +33,18 @@ function redirect_to_root(){
 // Debug::dump($cart->getCustomer());
 
 // print("</pre>"); 
+
+
+// 1:M bidirectional
+print("<pre>");
+
+$product = $entityManager->find('Models\Product', 1);
+Debug::dump($product);
+// Debug::dump($customer->getCart());
+// Debug::dump($customer->getCart()->getCustomer());
+
+$features = $entityManager->find('Models\Feature', 2);
+Debug::dump($features);
+
+
+print("</pre>");
